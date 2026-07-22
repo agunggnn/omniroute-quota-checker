@@ -1,0 +1,23 @@
+# OmniRoute Quota Checker — MCP server
+#
+# Boots the quota inspector as an MCP (stdio) server that Hermes can call
+# as a tool. The OmniRoute SQLite database is bind-mounted read-only from
+# the host using the SAME path the `omniroute` container uses, so the
+# quota data is always current.
+services:
+  omniroute-quota-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: omniroute-quota-mcp:latest
+    # Hermes launches this container per-call with stdio; no long-running
+    # service is required. Kept here for `docker compose build` convenience.
+    stdin_open: true
+    tty: false
+    # Read-only bind mount of the live OmniRoute storage database.
+    volumes:
+      - E:\GitHub\OmniRoute\data:/app/data:ro
+    # Allow overriding the DB path if OmniRoute data dir ever changes.
+    environment:
+      - OMNIROUTE_DB=/app/data/storage.sqlite
+    restart: "no"

@@ -1,0 +1,14 @@
+.github
+.git
+.venv
+.venv*
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+*.sqlite
+*.sqlite3
+storage.sqlite
+storage.sqlite-*
+tests/
+uv.lock.orig

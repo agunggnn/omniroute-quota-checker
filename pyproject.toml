@@ -4,10 +4,13 @@ version = "0.1.0"
 description = "Inspect OmniRoute quota snapshots and recommend models with the most remaining quota."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "mcp>=1.2",
+]
 
 [project.scripts]
 omni-quota = "omniroute_quota.cli:main"
+omni-quota-mcp = "omniroute_quota.mcp_server:main"
 
 [dependency-groups]
 dev = [
